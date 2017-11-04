@@ -1,0 +1,13 @@
+docker-machine项目在git上面：https://github.com/docker/machine/releases/
+安装：
+  curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+  chmod +x /tmp/docker-machine &&
+  sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+
+查看版本：
+  # docker-machine version
+  
+  
+如果使用上面下载速度缓慢，可以将同级目录的二进制docker-machine下载到：
+  cd /usr/local/bin/
+  chmod +x docker-machine
