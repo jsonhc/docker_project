@@ -1,0 +1,16 @@
+docker-compose项目在git上：https://github.com/docker/compose/releases/
+安装：
+  sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  
+查看版本：
+  $ docker-compose --version
+
+
+如果curl安装下载速度缓慢，同级目录已有下载好的二进制文件
+  cd /usr/local/bin/
+  mv docker-compose-Linux-x86_64 docker-compose
+  chmod +x /usr/local/bin/docker-compose
+  
+  [root@docker bin]# docker-compose --version
+  docker-compose version 1.17.0, build ac53b73
