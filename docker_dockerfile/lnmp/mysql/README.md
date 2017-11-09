@@ -1,3 +1,5 @@
+此次构建适用于mariadb和MySQL5.6（由于MySQL5.6和MySQL5.7的初始化并不一样）
+
 自定义构建mysql（mariadb）
   1、基础镜像centos（官方镜像，latest）
   2、构建container时，请挂载配置文件和数据目录（如果配置文件有更改，请重新构建）
