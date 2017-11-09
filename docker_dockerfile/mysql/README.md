@@ -7,6 +7,8 @@
 
 [root@docker mysql]# docker run -d --name=mysql -p3306:3306 -v /data/mysql:/var/lib/mysql mysql:v1
 9a7509d3f48eba1a67ec690db652c5b73cbcc88c96ff871701c0ef7becc3ecc4
+
+
 [root@docker mysql]# docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
 9a7509d3f48e        mysql:v1            "/root/setup.sh"    3 seconds ago       Up 2 seconds        0.0.0.0:3306->3306/tcp   mysql
