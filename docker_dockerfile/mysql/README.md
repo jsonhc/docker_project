@@ -2,7 +2,11 @@
   在此基础上自定义构建执行sql和配置MySQL配置文件
   在setup.sh这个shell脚本中MySQL5.7的初始化与MySQL5.6的初始化不一样
   
-  
+ 工作前提：
+ 1、# docker pull mysql
+ 2、# mkdir -p /data/mysql
+ 
+ 
 [root@docker mysql]# docker build -t mysql:v1 
 
 [root@docker mysql]# docker run -d --name=mysql -p3306:3306 -v /data/mysql:/var/lib/mysql mysql:v1
