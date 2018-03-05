@@ -14,6 +14,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 9a7509d3f48e        mysql:v1            "/root/setup.sh"    3 seconds ago       Up 2 seconds        0.0.0.0:3306->3306/tcp   mysql
 
 [root@docker mysql]# docker exec -it mysql /bin/bash
+
 root@9a7509d3f48e:/# mysql -uroot -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
