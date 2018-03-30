@@ -1,0 +1,87 @@
+docker-compose.yml示例：
+[root@VM_0_11_centos docker_demo]# cat docker-compose.yml 
+	version: '3'
+	services:
+	  redis:
+		image: redis
+		ports:
+		  - "6380:6379"
+	  redis-6381:
+		image: redis-6381
+		ports:
+		  - "6381:6379"
+		links:
+		  - redis:redis-6380 
+      
+下面是一些docker-compose的命令：
+# docker-compose -f docker-compose.yml up        开启
+
+[root@VM_0_11_centos docker_demo]# docker-compose ps     列出、查询
+         Name                        Command               State           Ports         
+-----------------------------------------------------------------------------------------
+dockerdemo_redis-6381_1   docker-entrypoint.sh redis ...   Up      0.0.0.0:6381->6379/tcp
+dockerdemo_redis_1        docker-entrypoint.sh redis ...   Up      0.0.0.0:6380->6379/tcp
+
+[root@VM_0_11_centos docker_demo]# docker-compose ps redis     列出指定服务名为redis
+       Name                     Command               State           Ports         
+------------------------------------------------------------------------------------
+dockerdemo_redis_1   docker-entrypoint.sh redis ...   Up      0.0.0.0:6380->6379/tcp
+
+[root@VM_0_11_centos docker_demo]# docker-compose config --services     列出服务名
+redis
+redis-6381
+
+[root@VM_0_11_centos docker_demo]# docker-compose -f docker-compose.yml config    列出yml文件
+services:
+  redis:
+    image: redis
+    ports:
+    - 6380:6379/tcp
+  redis-6381:
+    image: redis-6381
+    links:
+    - redis:redis-6380
+    ports:
+    - 6381:6379/tcp
+version: '3.0'
+
+[root@VM_0_11_centos docker_demo]# docker-compose config --volumes   列出数据卷
+
+[root@VM_0_11_centos docker_demo]# docker-compose -f docker-compose.yml down     关闭
+Stopping dockerdemo_redis-6381_1 ... done
+Stopping dockerdemo_redis_1      ... done
+Removing dockerdemo_redis-6381_1 ... done
+Removing dockerdemo_redis_1      ... done
+Removing network dockerdemo_default    
+
+[root@VM_0_11_centos docker_demo]# docker-compose -f docker-compose.yml exec redis hostname -i
+172.20.0.2
+  exec：进行执行命令      redis：为服务名
+  
+[root@VM_0_11_centos docker_demo]# docker-compose -f docker-compose.yml images    列出镜像
+       Container          Repository    Tag       Image Id      Size 
+---------------------------------------------------------------------
+dockerdemo_redis-6381_1   redis-6381   latest   93eb0c141b8e   102 MB
+dockerdemo_redis_1        redis        latest   c5355f8853e4   102 MB
+
+[root@VM_0_11_centos docker_demo]# docker-compose -f docker-compose.yml logs -t --tail="10" redis    查询服务redis的日志
+Attaching to dockerdemo_redis_1
+redis_1       | 2018-03-30T02:46:53.497442570Z 1:M 30 Mar 02:46:53.497 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+redis_1       | 2018-03-30T02:46:53.497447054Z 1:M 30 Mar 02:46:53.497 * Ready to accept connections
+redis_1       | 2018-03-30T02:46:53.870375868Z 1:M 30 Mar 02:46:53.869 * Slave 172.20.0.3:6379 asks for synchronization
+redis_1       | 2018-03-30T02:46:53.870382215Z 1:M 30 Mar 02:46:53.869 * Full resync requested by slave 172.20.0.3:6379
+redis_1       | 2018-03-30T02:46:53.870384726Z 1:M 30 Mar 02:46:53.869 * Starting BGSAVE for SYNC with target: disk
+redis_1       | 2018-03-30T02:46:53.870387132Z 1:M 30 Mar 02:46:53.869 * Background saving started by pid 13
+redis_1       | 2018-03-30T02:46:53.883921016Z 13:C 30 Mar 02:46:53.883 * DB saved on disk
+redis_1       | 2018-03-30T02:46:53.886580778Z 13:C 30 Mar 02:46:53.883 * RDB: 0 MB of memory used by copy-on-write
+redis_1       | 2018-03-30T02:46:53.902258447Z 1:M 30 Mar 02:46:53.901 * Background saving terminated with success
+redis_1       | 2018-03-30T02:46:53.902269481Z 1:M 30 Mar 02:46:53.902 * Synchronization with slave 172.20.0.3:6379 succeeded
+
+[root@VM_0_11_centos docker_demo]# docker-compose -f docker-compose.yml rm -s redis-6381
+Stopping dockerdemo_redis-6381_1 ... done
+Going to remove dockerdemo_redis-6381_1
+Are you sure? [yN] N             # 如果加上-s/--stop那么就会先将服务进行停止，然后询问你是否删除：
+
+[root@VM_0_11_centos docker_demo]# docker-compose -f docker-compose.yml start redis-6381     单独启动某个服务
+Starting redis-6381 ... done 
+
