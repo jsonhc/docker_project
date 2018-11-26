@@ -18,5 +18,6 @@ USE mysql;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' identified by 'redhat';
 FLUSH PRIVILEGES;
 
-UPDATE user SET password=PASSWORD("redhat") WHERE user='root';
+UPDATE user SET password=PASSWORD("redhat") WHERE user='root';         # 针对mysql5.6
+UPDATE user SET authentication_string=PASSWORD("redhat") WHERE user='root';      # 针对mysql5.7
 FLUSH PRIVILEGES;
