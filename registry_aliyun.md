@@ -1,17 +1,6 @@
 # registry
-将本地镜像push到阿里云镜像registry
-
-[root@docker docker_project]# docker login --username=jsonhc registry.cn-hangzhou.aliyuncs.com
-Password: 
-
-    docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/wadeson/jsonhc:[镜像版本号]  
-       image_id或者image_name  
-     [root@docker docker_project]# docker tag mysql:v1 registry.cn-hangzhou.aliyuncs.com/wadeson/jsonhc:v1  
-
-docker push registry.cn-hangzhou.aliyuncs.com/wadeson/jsonhc:[镜像版本号]  
-     [root@docker docker_project]# docker push registry.cn-hangzhou.aliyuncs.com/wadeson/jsonhc:v1
-
-
-上面push到aliyun镜像名称都是v1，使用下面可以增加image_name：
-[root@docker docker_project]# docker tag mysql:v1 registry.cn-hangzhou.aliyuncs.com/wadeson/jsonhc:mysql_auto
-[root@docker docker_project]# docker push registry.cn-hangzhou.aliyuncs.com/wadeson/jsonhc:mysql_auto
+### 将本地镜像push到阿里云镜像registry
+## 登录registry
+### docker login --username=json_hc@163.com registry.cn-beijing.aliyuncs.com
+### docker tag mysql:5.7v1 registry.cn-beijing.aliyuncs.com/jsonhc/jsonhc:mysql5.7v1
+### docker push registry.cn-beijing.aliyuncs.com/jsonhc/jsonhc:mysql5.7v1
