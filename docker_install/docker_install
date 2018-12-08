@@ -9,3 +9,6 @@
   
 # If the above steps are too slow to install
   yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm
+  
+# 下载docker-ce:
+https://download.docker.com/linux/centos/7/
