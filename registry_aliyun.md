@@ -7,3 +7,8 @@
 
 ### 镜像地址查看
 ### https://cr.console.aliyun.com/repository/cn-beijing/jsonhc/jsonhc/images
+
+### 本地pull阿里云镜像registry
+### docker login --username=json_hc@163.com registry.cn-beijing.aliyuncs.com
+### docker tag  registry.cn-beijing.aliyuncs.com/jsonhc/jsonhc:mysql5.7v1 mysql:5.7v1
+### docker images
